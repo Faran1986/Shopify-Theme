@@ -1,0 +1,176 @@
+<section class="popup" id="popup" data-section-id="{{ section.id }}" data-section-type="mailing-popup">
+    <div class="popup-inner">
+        <button id="cancel-btn"><img class="cancel-btn" src="{{'close-icon.png' | asset_img_url: 'master'}}" /></button>
+        <div class="image-wrap">
+            <img src="{{'subscription.png' | asset_img_url: 'master'}}">
+        </div>
+        {% comment %} <div class="input-form">
+            <p>A WARM WELCOME</p>
+            <h2>15% OFF YOUR ENTIRE PURCHASE AND EXCLUSIVE OFFERS!</h2>
+            <p>EASILY OPT OUT AT ANY TIME</p>
+            {% comment %} <form>
+                <input type="email" placeholder="EMAIL ADDRESS*" />
+                <input type="select" placeholder="BIRTHDAY" />
+                <a href="/">SIGN UP NOW</a>
+            </form> {% endcomment %}
+
+
+            {% comment %} ========================== {% endcomment %}
+            {% comment %} {% form 'create_customer' %}
+                {{ form.errors | default_errors }}
+                <input id="email" type="email" name="customer[email]" placeholder="EMAIL ADDRESS*" />
+                <input id="birthday" type="date" name="customer[note][Birthday]" placeholder="BIRTHDAY"/>
+                <input type="submit" value="SIGN UP NOW" />
+            {% endform %} {% endcomment %}
+
+            {% comment %} ========================== {% endcomment %}
+            <a href="/">MAYBE LATER</a>
+        </div> {% endcomment %}
+                    <div class="newsletter__popup-form">
+                {% form 'customer', id: 'mailing-popup-form' %}
+                {{ form.errors | default_errors }}
+                {% if form.posted_successfully? %}
+                <p class="success">{{ 'general.password_page.thanks' | t }}</p>
+                {% else %}
+                <input type="hidden" name="contact[tags]" value="prospect, newsletter">
+                <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}">
+                <input type="submit" value="{{ 'general.newsletter_form.submit' | t }}">
+                {%- if section.settings.gdpr_text != blank -%}
+                <div class="gdpr_disclaimer rte small">
+                <span>{{ section.settings.gdpr_text | escape }}</span>
+                </div>
+            {%- endif -%}
+                {% endif %}
+                {% endform %}
+            </div>
+    </div>
+</section>
+
+<style>
+
+/* popup starts */
+
+.popup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(16, 16, 16, 0.9);
+    animation: popup 5s;
+    left: 0;
+    top: 0;
+    z-index: 6;
+
+}
+
+#cancel-btn {
+    cursor: pointer;
+}
+
+.popup-inner {
+    display: flex;
+    max-width: 952px;
+    min-height: 546px;
+    position: relative;
+    margin: auto;
+    align-items: center;
+    background-color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.popup-inner button {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 27px;
+    right: 33px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.popup-inner .image-wrap {
+    font-size: 0;
+    max-width: 46.2%;
+}
+
+.popup-inner .image-wrap img {
+    width: 100%;
+    height: 100%;
+    min-height: 546px;
+    object-fit: cover;
+}
+
+.popup-inner .input-form {
+    padding: 76px 61px 38px;
+    text-align: center;
+    width: 50%;
+}
+
+.popup-inner .input-form p {
+    font-size: 14px;
+    font-weight: lighter;
+    color: #424241;
+    font-family: 'poppins';
+    margin: 0;
+}
+
+.popup-inner .input-form h2 {
+    font-size: 34px;
+    line-height: 40px;
+    padding: 16px 0;
+    color: #424241;
+    margin: 0;
+    font-family: 'british castilla';
+}
+
+.popup-inner form {
+    padding-top: 39px;
+}
+
+.popup-inner input {
+    border: none;
+    width: 353px;
+    border-bottom: 1px solid rgba(112, 112, 112, 0.5);
+    padding-bottom: 17px;
+    margin-bottom: 23px;
+    text-indent:0px;
+}
+
+.popup-inner input:focus {
+    outline: none;
+}
+
+.popup-inner form a {
+    margin: 25px 0 30px;
+    background-color: #263E52;
+    color: #fff;
+    padding: 10px 44px;
+    text-decoration: none;
+}
+
+.popup-inner a {
+    font-family: 'poppins';
+    display: inline-block;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #424241;
+}
+
+
+/* popup ends */
+</style>
+<script>
+
+$(document).ready(function() {
+  setTimeout(function() {
+      $("#popup").fadeOut(1000);
+      $("#popup").delay(3000);
+      $("#popup").fadeIn();
+  },1000);
+  $("#cancel-btn").click(function() {
+      $("#popup").fadeOut();
+  });
+});
+</script>
+

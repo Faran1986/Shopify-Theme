@@ -1,0 +1,79 @@
+{% if collection.empty? %}
+  {% comment %}add default state for collection block in storefront editor{% endcomment %}
+  {% capture collection_title %}{{ 'homepage.onboarding.collection_title' | t }}{% endcapture %}
+  {% capture collection_image_url %}{% endcapture %}
+{% else %}
+  {% capture collection_title %}{{ collection.title }}{% endcapture %}
+{% endif %}
+{% comment %} Collections Title {% endcomment %}
+<div class="collection__item-details">
+  <a href="{{ collection.url }}" title="{{ collection.title }}" class="diff-coll__title">
+    {% if block.settings.collection_heading_image %}
+      <img class="collection-heading_logo" src="{{ block.settings.collection_heading_image | asset_url }}" />
+      {% else %}
+      <p>{{ collection.title }}</p>
+    {% endif %}
+    {% if section.settings.collection_count %}
+    <p>{{ 'collections.general.items_count' | t: count: collection.products_count }}</p>
+    {% endif %}
+  </a>
+</div>
+{% comment %} collection video {% endcomment %}
+{% if block.settings.play_video and template.name == "index" %}
+  <div class="collection__item-video">
+    {{ block.settings.video_embed }}
+    <div class="home-collection__links">
+      <a href="{{block.settings.collection_url}}">{{block.settings.collection_btn_label}}</a>
+    </div>
+  </div>
+{% else %}
+  <div class="collection__item-image">
+    <a href="{{ collection.url }}" title="{{ collection_title }}">
+      {% if collection.image %}
+        {% render 'basic-responsive-image', type: collection.image, data_widths: '[180, 360, 540, 720, 2048]' %}
+        <noscript>
+          <img src="{{ collection.image | img_url: '800x' }}" alt="{{ collection.image.alt }}" class="collection-grid-image">
+        </noscript>
+      {% elsif collection.products.first and collection.products.first.media != empty %}
+        {% render 'basic-responsive-image', type: collection.products.first.featured_media.preview_image, data_widths: '[180, 360, 540, 720, 2048]' %}
+        <noscript>
+          <img src="{{ collection.products.first.featured_media.preview_image | img_url: '800x' }}" alt="{{ collection.products.first.featured_media.preview_image.alt }}" class="collection-grid-image">
+        </noscript>
+      {% else %}
+        {% render 'basic-responsive-image', type: blank %}
+        <noscript>
+          <img src="{{ blank | img_url: '800x' }}" alt="No image" class="collection-grid-image">
+        </noscript>
+      {% endif %}
+    </a>
+  </div>
+{% endif %}
+{% comment %} Collections Products {% endcomment %}
+<div class="collection-product__wraper">
+    {% for product in collection.products limit:4 %}
+        <div
+          class="featured__collection-product product-index js-product-listing"
+          id="product-listing-{{ product.id }}"
+          data-product-id="{{ product.id }}"
+          data-alpha="{{ product.title }}"
+          data-price="{{ product.price }}"
+        >
+          {% render 'product-listing',product: product, collection: collection %}
+        </div>
+        {% comment %} <div class="collection-products">
+            <div class="collection-product_img">
+                <a href="{{product.url}}">
+                    {{ product.featured_image | product_img_url: '400x'| img_tag  }}
+                </a>
+            </div>
+            <div class="product-name">
+                <a>{{ product.title }}</a>
+            </div>
+            <div class="product-price">
+                <span class="price amount">
+                    <del>{{ product.price | money }}</del>
+                </span>
+            </div>
+        </div> {% endcomment %}
+    {% endfor %}
+</div>

@@ -1,0 +1,242 @@
+<section class="get-in-touch">
+    <div class="container">
+        <h2>{{ section.settings.page_heading }}</h2>
+        <div class="contact-inq">
+            {% for block in section.blocks %}
+                {% if block.type == "generalInquiries" %}
+                    <div class="inq-card">
+                        {% if block.settings.show_heading %}
+                            <h5>{{ block.settings.block_heading }}</h5>
+                        {% endif %}
+                        <div class="enqs">
+                            {% if block.settings.show_sub_heading %}
+                                <h6>{{ block.settings.block_sub_heading }}</h6>
+                            {% endif %}
+                            {% if block.settings.show_mail_address %}
+                                <a href="{{ block.settings.block_mail_link }}">{{ block.settings.block_mail_address }}</a>
+                            {% endif %}
+                            {% if block.settings.show_sub_heading2 %}
+                                <h6 class="child-2">{{ block.settings.block_sub_heading2 }}</h6>
+                            {% endif %}
+                            {% if block.settings.show_mail_address2 %}
+                                <a href="{{ block.settings.block_mail_link2 }}">{{ block.settings.block_mail_address2 }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="customer-care">
+                            {% if block.settings.show_sub_heading3 %}
+                                <h6>{{ block.settings.block_sub_heading3 }}</h6>
+                            {% endif %}
+                            {% if block.settings.show_richtext %}
+                                {{ block.settings.customer_care_hours }}
+                             {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if block.type == "OtherInquiries" %}
+                    <div class="inq-card">
+                        {% if block.settings.show_heading_other %}
+                            <h5>{{ block.settings.block_heading_other }}</h5>
+                        {% endif %}
+                        <ul>
+                            {% if block.settings.show_text_other %}
+                                <li>{{ block.settings.block_text_other }}</li>
+                            {% endif %}
+                            {% if block.settings.show_mail_address_other %}
+                                <li>
+                                    <a href="{{ block.settings.bblock_mail_link_other }}">{{ block.settings.block_mail_address_other }}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% comment %} <div class="inq-card">
+                    <h5>RETURNS</h5>
+                    <ul>
+                        <li>Livingston Orders</li>
+                        <li><a href="mailto:orders@livingston.com">orders@livingston.com</a></li>
+                    </ul>
+                </div> {% endcomment %}
+            {% endfor %}
+        </div>
+    </div>
+</section> 
+ 
+ {% schema %}
+ {
+    "name":"Contact US Page",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id": "page_banner_img",
+            "label": "Add Page Banner"
+        },
+        {
+            "type": "text",
+            "id": "page_heading",
+            "label": "Add Page Heading",
+            "default": "Get in Touch"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "generalInquiries",
+            "name": "Block General Inquiries",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "show_heading",
+                    "label": "Show block Heading",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_heading",
+                    "label": "Add block Heading"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_sub_heading",
+                    "label": "Show block Sub Heading",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_sub_heading",
+                    "label": "Add block Sub Heading"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_text",
+                    "label": "Show block Text",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_text",
+                    "label": "Add block Text"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_mail_address",
+                    "label": "Show block mail address",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_mail_address",
+                    "label": "Add block mail address"
+                },
+                {
+                    "type": "url",
+                    "id": "block_mail_link",
+                    "label": "Add Mail Link"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_sub_heading2",
+                    "label": "Show block Sub Heading 2",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_sub_heading2",
+                    "label": "Add block Sub Heading 2"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_mail_address2",
+                    "label": "Show block mail address 2",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_mail_address2",
+                    "label": "Add block mail address 2"
+                },
+                {
+                    "type": "url",
+                    "id": "block_mail_link2",
+                    "label": "Add Mail Link 2"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_sub_heading3",
+                    "label": "Show block Sub Heading 3",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_sub_heading3",
+                    "label": "Add block Sub Heading 3"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_richtext",
+                    "label": "Show Rich Text",
+                    "default": false
+                },
+                {
+                    "type": "html",
+                    "id": "customer_care_hours",
+                    "label": "Add Customer care hours"
+                }
+            ]
+        },
+        {
+            "type": "OtherInquiries",
+            "name": "Other Inquiries",
+            "settings": [
+                {
+                    "type": "checkbox",
+                    "id": "show_heading_other",
+                    "label": "Show block Heading",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_heading_other",
+                    "label": "Add block Heading"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_sub_heading_other",
+                    "label": "Show block Sub Heading",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_sub_heading_other",
+                    "label": "Add block Sub Heading"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_text_other",
+                    "label": "Show block Text",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_text_other",
+                    "label": "Add block Text"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_mail_address_other",
+                    "label": "Show block mail address",
+                    "default": false
+                },
+                {
+                    "type": "text",
+                    "id": "block_mail_address_other",
+                    "label": "Add block mail address"
+                },
+                {
+                    "type": "url",
+                    "id": "block_mail_link_other",
+                    "label": "Add block mail Link"
+                }
+            ]
+        }
+    ]
+ }
+ {% endschema %}

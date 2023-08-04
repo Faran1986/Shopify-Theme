@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "banner": {
+      "type": "banner-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/BANNERS_1920x600_MATTERHORN.jpg",
+        "banner_height": 600
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "text": "<p>Join the Lang's as they travel the globe, getting fresh, and ancient inspiration that creates the Livingston line!<\/p>",
+        "center_align": true,
+        "grid": 3,
+        "show_date": true,
+        "show_author": true,
+        "show_tags": true,
+        "show_button": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

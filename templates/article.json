@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {}
+    },
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "article_info": {
+          "type": "article_info",
+          "settings": {
+            "center_align": true,
+            "show_date": true,
+            "show_author": false
+          }
+        },
+        "header": {
+          "type": "article_header",
+          "settings": {}
+        },
+        "article_image": {
+          "type": "article_image",
+          "settings": {}
+        },
+        "article_content": {
+          "type": "article_content",
+          "settings": {}
+        },
+        "social_sharing": {
+          "type": "social_sharing",
+          "disabled": true,
+          "settings": {
+            "center_align": true,
+            "show_twitter": true,
+            "show_facebook": true,
+            "show_pinterest": true
+          }
+        }
+      },
+      "block_order": [
+        "article_info",
+        "header",
+        "article_image",
+        "article_content",
+        "social_sharing"
+      ],
+      "settings": {
+        "page_width": 840
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main"
+  ]
+}
